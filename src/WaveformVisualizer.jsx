@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import bgImage from './bg.png.png'; 
+import bgImage from './bg.png'; 
 
 export default function WaveformVisualizer({ audioCtx, analyser }) {
   
@@ -53,17 +53,14 @@ export default function WaveformVisualizer({ audioCtx, analyser }) {
     const bufferLength = analyser.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
 
-    
-    const draw = () => {
+      const draw = () => {
       analyser.getByteTimeDomainData(dataArray);
-
       
-      ctx.fillStyle = "rgba(10, 124, 218, 0.1)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      // Start with a clean canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      
+      // Draw the background image
       if (backgroundImage) {
-        
         const imgWidth = backgroundImage.width;
         const imgHeight = backgroundImage.height;
         const canvasRatio = canvas.width / canvas.height;
@@ -72,26 +69,30 @@ export default function WaveformVisualizer({ audioCtx, analyser }) {
         let drawWidth, drawHeight, offsetX = 0, offsetY = 0;
         
         if (canvasRatio > imgRatio) {
-          
+          // Canvas is wider than image aspect ratio
           drawWidth = canvas.width;
           drawHeight = canvas.width / imgRatio;
           offsetY = (canvas.height - drawHeight) / 2;
         } else {
-          
+          // Canvas is taller than image aspect ratio
           drawHeight = canvas.height;
           drawWidth = canvas.height * imgRatio;
           offsetX = (canvas.width - drawWidth) / 2;
         }
         
-        
-        ctx.globalAlpha = 0.3;
+        // Draw background image at full opacity
+        ctx.globalAlpha = 1.0;
         ctx.drawImage(backgroundImage, offsetX, offsetY, drawWidth, drawHeight);
-        ctx.globalAlpha = 1.0; 
-      }
-      
-      
-      ctx.lineWidth = 2;
-      ctx.strokeStyle = "rgba(0, 255, 0, 0.8)"; 
+      } else {
+        // Fallback to black background if image is not loaded
+        ctx.fillStyle = "#000000";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      }      
+      // Draw waveform with glow effect for better visibility over background
+      ctx.lineWidth = 2.5;
+      ctx.strokeStyle = "rgba(0, 255, 0, 0.9)";
+      ctx.shadowColor = "rgba(0, 255, 0, 0.7)";
+      ctx.shadowBlur = 6;
       ctx.beginPath();
 
       const sliceWidth = (canvas.width * 1.0) / bufferLength;
@@ -108,11 +109,11 @@ export default function WaveformVisualizer({ audioCtx, analyser }) {
         }
 
         x += sliceWidth;
-      }
-
-      ctx.lineTo(canvas.width, canvas.height / 2);
+      }      ctx.lineTo(canvas.width, canvas.height / 2);
       ctx.stroke();
       
+      // Reset shadow effect to avoid affecting other drawings
+      ctx.shadowBlur = 0;
       
       requestAnimationFrame(draw);
     };
@@ -120,19 +121,22 @@ export default function WaveformVisualizer({ audioCtx, analyser }) {
     
     draw();
     
-  }, [audioCtx, analyser, backgroundImage]);
-  return (
+  }, [audioCtx, analyser, backgroundImage]);  return (
     <canvas
       ref={backgroundCanvasRef}
       style={{
         position: "fixed",
         top: 0,
         left: 0,
+        right: 0,
+        bottom: 0,
         zIndex: -1,
         width: "100%",
         height: "100%",
         maxWidth: "100vw",
         maxHeight: "100vh",
+        margin: 0,
+        padding: 0,
         objectFit: "cover"
       }}
     />

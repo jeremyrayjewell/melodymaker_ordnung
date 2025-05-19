@@ -11,7 +11,7 @@
   overflow-x: visible !important;
   overflow-y: visible !important;
   box-sizing: content-box !important;
-  padding: 10px 0;
+  padding: 0px 0;
 }
 
 /* Fix line breaking in pre elements */
@@ -49,11 +49,44 @@
     width: auto !important;
     margin: 0 -10px; /* Negative margin helps with overflow */
   }
+  
+  /* Reduce vertical spacing between ASCII art elements on mobile */
+  .ascii-art-container {
+    padding: 5px 0;
+    margin-bottom: 10px;
+  }
+  
+  /* Reduce padding in titles on mobile */
+  .ascii-art-title pre {
+    padding: 5px 0;
+  }
+  
+  /* Tighten line height on mobile */
+  .ascii-art-container pre span {
+    line-height: 1.1;
+  }
 }
 
 /* Extra large ASCII art support */
 .ascii-art-title pre {
   padding: 10px 0;
+}
+
+/* Extra compact ASCII art for very small screens */
+@media (max-width: 480px) {
+  .ascii-art-container {
+    padding: 2px 0;
+    margin-bottom: 5px;
+  }
+}
+
+/* Optional compact class that can be added to containers that need less spacing */
+.ascii-art-container.compact {
+  padding: 2px 0;
+  margin-bottom: 5px;
+}
+.ascii-art-container.compact pre {
+  margin: 0;
 }
 
 /* Prevent horizontal scrolling but allow overflow */

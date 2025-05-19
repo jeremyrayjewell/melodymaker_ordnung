@@ -28,10 +28,12 @@ function App() {
     const newTheme = theme === "default" ? "green" : theme === "green" ? "amber" : "default";
     setTheme(newTheme);
     document.body.setAttribute("data-bs-theme", newTheme === "default" ? "dos" : newTheme);
-  };  return (
-    <div className="container-fluid dosbox" style={{ backgroundColor: 'transparent', border: 'none', boxShadow: 'none' }}>
+  };
+  
+  return (
+    <div className="container-fluid dosbox" style={{ backgroundColor: 'transparent', border: 'none', boxShadow: 'none', padding: 0, margin: 0 }}>
       {/* Everything must be wrapped inside this outermost div with transparent background */}
-      <div className="row mb-3">
+      <div className="row mb-3" style={{ margin: 0 }}>
         <div className="col-12 text-center">          {/* ASCII Art with React-based wave animation */}
           <div className="ascii-art-container">
             <pre style={{ fontSize: "clamp(6px, 1vw, 10px)", color: "white", padding: "0" }}>
@@ -58,9 +60,8 @@ function App() {
           <button className="btn" onClick={toggleTheme}>Change Theme</button>
         </div>
       </div>
-      
-      {/* Main App content */}
-      <div className="App" style={{ position: "relative", width: "100%", height: "100%" }}>
+        {/* Main App content */}
+      <div className="App" style={{ position: "relative", width: "100%", height: "100%", margin: 0, padding: 0 }}>
         {audioCtx && analyser && (
           <>
             {/* Background visualization */}

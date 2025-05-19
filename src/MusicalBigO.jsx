@@ -658,9 +658,8 @@ const [selectEven, setSelectEven] = useState(true);
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    const textColor = '#ffffff';      
-    const bgColor = '#000080';       
+      const textColor = '#ffffff';      
+    const bgColor = '#000000';       
     const dimTextColor = '#aaaaaa';   
     const highlightColor = '#ffff00'; 
     const borderColor = '#aaaaaa';    
@@ -786,8 +785,7 @@ const [selectEven, setSelectEven] = useState(true);
   
   
   
-  
-  function drawDrumGrid(rhythmPattern, currentStep) {
+    function drawDrumGrid(rhythmPattern, currentStep) {
     const canvas = drumCanvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
@@ -795,6 +793,9 @@ const [selectEven, setSelectEven] = useState(true);
     const width = canvas.width;
     const height = canvas.height;
     ctx.clearRect(0, 0, width, height);
+    
+    ctx.fillStyle = "#000000";
+    ctx.fillRect(0, 0, width, height);
 
     
     
@@ -1747,10 +1748,9 @@ const startAckermann = () => {
       
       <div className="row">
         <div className="col-12">
-          <div className="dos-panel">
-            <h3>Big-O Time Complexity <span className="blink">_</span></h3>
+          <div className="dos-panel">            <h3>Big-O Time Complexity <span className="blink">_</span></h3>
             <nav className="dos-nav">
-              <div className="btn-group btn-group-sm dos-btn-group" role="group">
+              <div className="btn-group btn-group-sm dos-btn-group flex-wrap" role="group">
                 <button className="btn dos-btn" onClick={() => setSelectedTab("constant")}>O(1)</button>
                 <button className="btn dos-btn" onClick={() => setSelectedTab("doublelogarithmic")}>O(log log n)</button>
                 <button className="btn dos-btn" onClick={() => setSelectedTab("logarithmic")}>O(log n)</button>
@@ -1760,8 +1760,6 @@ const startAckermann = () => {
                 <button className="btn dos-btn" onClick={() => setSelectedTab("linearithmic")}>O(n log n)</button>
                 <button className="btn dos-btn" onClick={() => setSelectedTab("quadratic")}>O(n^2)</button>
                 <button className="btn dos-btn" onClick={() => setSelectedTab("cubic")}>O(n^3)</button>
-              </div>
-              <div className="btn-group btn-group-sm dos-btn-group mt-2" role="group">
                 <button className="btn dos-btn" onClick={() => setSelectedTab("polynomial")}>O(n^k)</button>
                 <button className="btn dos-btn" onClick={() => setSelectedTab("exponential")}>O(2^n)</button>
                 <button className="btn dos-btn" onClick={() => setSelectedTab("exponentialBaseC")}>O(c^n), c&gt;2</button>

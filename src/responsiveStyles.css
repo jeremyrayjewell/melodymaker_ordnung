@@ -52,6 +52,17 @@
     margin-bottom: 5px;
   }
   
+  .dos-btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .dos-btn-group .btn {
+    margin: 2px;
+    flex-grow: 0;
+  }
+  
   .dos-form-control {
     width: 100% !important;
   }
@@ -76,7 +87,7 @@
 .audio-canvas, .algorithm-canvas, .drum-canvas {
   display: block;
   max-height: 200px;
-  background-color: transparent;
+  background-color: #000000;
 }
 
 /* Fix for responsive form controls */
