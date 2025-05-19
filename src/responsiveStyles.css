@@ -1,0 +1,214 @@
+/* 
+  Create a file with responsive styles specifically for the BIOS-style UI
+  This file adds responsiveness to the bootstrap386 theme
+*/
+
+.dos-panel {
+  padding: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.dos-canvas-container {
+  margin: 10px;
+  padding: 10px;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 1 300px;
+  min-width: 250px;
+  max-width: 100%;
+}
+
+/* Responsive styles for different screen sizes */
+@media (max-width: 992px) {
+  .dos-canvas-container {
+    flex-basis: 45%;
+    margin: 5px;
+  }
+  
+  .d-flex {
+    flex-wrap: wrap !important;
+  }
+  
+  h3, h4 {
+    font-size: 1.2rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .dos-canvas-container {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+  
+  .btn-group {
+    flex-wrap: wrap !important;
+  }
+  
+  .btn-group .btn {
+    margin-bottom: 5px;
+  }
+  
+  .dos-form-control {
+    width: 100% !important;
+  }
+  
+  .slider-container {
+    width: 100% !important;
+  }
+  
+  label {
+    font-size: 0.9rem;
+  }
+}
+
+/* Make canvas elements responsive */
+.dos-canvas {
+  width: 100% !important;
+  height: auto !important;
+  max-width: 100%;
+  border: 1px solid #0000aa;
+}
+
+.audio-canvas, .algorithm-canvas, .drum-canvas {
+  display: block;
+  max-height: 200px;
+  background-color: transparent;
+}
+
+/* Fix for responsive form controls */
+input[type="range"] {
+  width: 100%;
+  max-width: 300px;
+}
+
+select.form-control, input.form-control {
+  max-width: 100%;
+  width: 100%;
+}
+
+/* Style for better visibility on small screens */
+@media (max-width: 480px) {
+  .container-fluid {
+    padding: 5px !important;
+  }
+  
+  h1 {
+    font-size: 1.2rem !important;
+  }
+  
+  h3 {
+    font-size: 1rem !important;
+  }
+  
+  h4 {
+    font-size: 0.9rem !important;
+  }
+  
+  .btn {
+    padding: 0.25rem 0.5rem !important;
+    font-size: 0.8rem !important;
+  }
+  
+  .ascii-art-container {
+    transform: scale(0.4);
+    transform-origin: center top;
+  }
+}
+
+/* Special styles for large ASCII art title */
+.ascii-art-title {
+  margin: 40px 0 !important;
+}
+
+@media (max-width: 768px) {
+  .ascii-art-title {
+    margin: 30px 0 !important;
+  }
+}
+
+/* ASCII art container responsiveness */
+.ascii-art-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  overflow: visible !important;
+  margin: 30px 0;
+  height: auto !important;
+  /* Allow container to grow as needed */
+  min-height: fit-content;
+  position: relative;
+}
+
+.ascii-art-container pre {
+  font-family: monospace;
+  color: white;
+  white-space: pre !important;
+  overflow: visible !important;
+  width: 100%;
+  height: auto !important;
+  margin: 0;
+  padding: 0;
+  /* Fix for ensuring full visibility */
+  transform-origin: center;
+  /* Ensure the container is tall enough */
+  min-height: fit-content;
+}
+
+/* Ensure spans inside pre are properly displayed */
+.ascii-art-container pre span {
+  display: block;
+  overflow: visible !important;
+  white-space: pre !important;
+  /* Allow content to flow properly, fixing cutoff issues */
+  height: auto !important;
+  min-height: fit-content;
+}
+
+@media (max-width: 1200px) {
+  .ascii-art-container {
+    transform-origin: center;
+    margin: 25px 0;
+  }
+  
+  .ascii-art-container pre {
+    transform: scale(0.98);
+  }
+}
+
+@media (max-width: 992px) {
+  .ascii-art-container {
+    transform-origin: center;
+  }
+  
+  .ascii-art-container pre {
+    transform: scale(0.95);
+  }
+}
+
+@media (max-width: 768px) {
+  .ascii-art-container {
+    transform-origin: center;
+    margin: 20px 0;
+  }
+  
+  .ascii-art-container pre {
+    transform: scale(0.85);
+  }
+}
+
+@media (max-width: 576px) {
+  .ascii-art-container pre {
+    transform: scale(0.75);
+  }
+}
+
+@media (max-width: 360px) {
+  .ascii-art-container pre {
+    transform: scale(0.65);
+  }
+}

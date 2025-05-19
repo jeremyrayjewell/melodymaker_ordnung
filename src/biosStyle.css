@@ -1,0 +1,388 @@
+/* BIOS-like styling for MusicalBigO */
+
+/* Global styles */
+body {
+  background-color: #000080; /* Classic BIOS blue background */
+  color: #ffffff;
+  font-family: 'Px437_IBM_EGA8', 'VT323', 'DOS', monospace;
+  line-height: 1.2;
+  text-shadow: none;
+  padding: 0.5rem;
+  margin: 0;
+}
+
+/* Container styles */
+.container, .container-fluid {
+  background-color: #000080;
+  border: 2px solid #aaaaaa;
+  box-shadow: inset 0 0 10px #ffffff30;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Header styles */
+h1, h2, h3, h4, h5, h6 {
+  color: #ffffff;
+  background-color: #0000aa; /* Blue header bars instead of red */
+  padding: 0.25rem 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+
+/* Added background color to parent elements of headers */
+.dos-panel {
+  background-color: #000080; /* Dark blue BIOS-style background */
+  border: 1px solid #aaaaaa;
+  box-shadow: inset 0 0 5px #ffffff30;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.dos-panel:hover {
+  box-shadow: inset 0 0 8px #ffffff50;
+}
+
+/* Add background to the parent of ADSR Envelope heading */
+.dos-subtitle {
+  width: 100%;
+  margin: 0;
+  cursor: pointer;
+}
+
+.dos-subtitle-container {
+  background-color: #000080; /* Dark blue BIOS-style background */
+  border: 1px solid #aaaaaa;
+  padding: 0;
+  margin-bottom: 10px;
+  transition: background-color 0.2s ease;
+}
+
+.dos-subtitle-container:hover {
+  background-color: #000090; /* Slightly lighter blue on hover */
+}
+
+/* Style for collapse indicators */
+.collapse-indicator {
+  float: right;
+  font-weight: bold;
+  color: #ffffff;
+  margin-left: 10px;
+}
+
+.status-indicator {
+  float: right;
+  color: #00ff00; /* Bright green to indicate active status */
+  margin-left: 10px;
+  font-size: 0.9em;
+}
+
+/* Button styles */
+button, .btn {
+  background-color: #aaaaaa;
+  color: #000000;
+  border: 2px outset #ffffff;
+  padding: 0.25rem 1rem;
+  font-family: 'Px437_IBM_EGA8', 'VT323', 'DOS', monospace;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin: 2px;
+}
+
+button:hover, .btn:hover {
+  background-color: #ffffff;
+}
+
+button:active, .btn:active {
+  border-style: inset;
+}
+
+/* Input styles */
+input, select, textarea {
+  background-color: #000000;
+  color: #00aa00; /* Green text for inputs */
+  border: 1px solid #aaaaaa;
+  padding: 0.25rem;
+  font-family: 'Px437_IBM_EGA8', 'VT323', 'DOS', monospace;
+}
+
+/* Canvas visualizers */
+canvas {
+  background-color: #000000;
+  border: 1px solid #aaaaaa;
+  margin: 0.5rem 0;
+}
+
+/* ASCII art fixes */
+pre, .ascii-art {
+  font-family: 'Px437_IBM_EGA8', 'VT323', 'DOS', monospace;
+  white-space: pre;
+  line-height: 1;
+  margin: 0;
+  padding: 0.5rem;
+  background-color: #000000;
+  color: #aaaaaa;
+  overflow: hidden;
+}
+
+/* Tabs styling */
+.nav-tabs {
+  border-bottom: 1px solid #aaaaaa;
+  background-color: #000080;
+}
+
+.nav-tabs .nav-item {
+  background-color: #000044;
+  border: 1px solid #aaaaaa;
+  border-bottom: none;
+  margin-right: 0.25rem;
+}
+
+.nav-tabs .nav-link {
+  color: #aaaaaa;
+  padding: 0.25rem 1rem;
+}
+
+.nav-tabs .nav-link.active {
+  background-color: #000088;
+  color: #ffffff;
+  border-bottom: 1px solid #000088;
+}
+
+/* Algorithm steps display */
+.algo-step {
+  font-family: 'Px437_IBM_EGA8', 'VT323', 'DOS', monospace;
+  background-color: #000000;
+  color: #00aa00;
+  padding: 0.25rem;
+  margin: 0.25rem 0;
+  border-left: 3px solid #0000aa; /* Changed from red to blue */
+}
+
+.current-step {
+  background-color: #00008b;
+  color: #ffffff;
+}
+
+/* Control sections */
+.control-section {
+  border: 1px solid #aaaaaa;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  background-color: #000044;
+}
+
+.control-section h4 {
+  margin-top: 0;
+  background-color: #0000aa !important; /* Blue headers for control sections */
+}
+
+/* Sliders */
+input[type="range"] {
+  background-color: #aaaaaa;
+  height: 0.5rem;
+}
+
+/* Waveform selectors */
+.waveform-select {
+  padding: 0.25rem;
+  background-color: #000044;
+  border: 1px solid #aaaaaa;
+}
+
+/* Fix for overlapping elements */
+.row > div {
+  margin-bottom: 0.5rem;
+}
+
+/* Custom blinking cursor effect */
+.blinking-cursor::after {
+  content: "▂";
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* BIOS Interface style resets - add at the end of the file to ensure these styles have precedence */
+
+/* Box model resets */
+* {
+  box-sizing: border-box;
+}
+
+/* Fix spacing in forms */
+.form-group {
+  margin-bottom: 0.5rem;
+}
+
+.form-control {
+  background-color: #000000 !important;
+  color: #00aa00 !important; 
+  border-color: #aaaaaa !important;
+}
+
+/* Ensure buttons have the BIOS look */
+.btn {
+  font-family: 'Px437_IBM_EGA8', 'VT323', 'DOS', monospace !important;
+  text-transform: uppercase !important;
+  background-color: #aaaaaa !important;
+  color: #000000 !important;
+  border: 2px outset #ffffff !important;
+}
+
+.btn:hover {
+  background-color: #ffffff !important;
+}
+
+/* Restore tables to classic BIOS style */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #aaaaaa;
+}
+
+th {
+  background-color: #0000aa; /* Changed from red to blue */
+  color: #ffffff;
+  padding: 0.25rem;
+  text-align: center;
+}
+
+td {
+  border: 1px solid #aaaaaa;
+  padding: 0.25rem;
+  background-color: #000044;
+}
+
+/* Fix for overlapping elements */
+.container {
+  overflow: hidden;
+}
+
+/* Fix canvas visualizer positioning */
+canvas {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Top parent element should be transparent */
+#root {
+  background-color: transparent !important;
+}
+
+/* ASCII art styling */
+pre, .ascii-art, .animated-ascii-container {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Ensure individual ASCII characters are transparent */
+.ascii-line span {
+  background-color: transparent !important;
+}
+
+/* Override any other background settings for ASCII elements */
+[class*="ascii"] {
+  background-color: transparent !important;
+}
+
+/* ASCII art size and formatting */
+.animated-ascii-container, .ascii-art, pre {
+  font-size: 10px !important; /* Fixed smaller size for ASCII art */
+  line-height: 1 !important;
+  letter-spacing: normal !important;
+  transform: none !important;
+  white-space: pre !important;
+}
+
+/* Top-level elements should be transparent */
+#root, .App, .container-fluid, .row, .col, .col-md-12, .dosbox {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Make all children of the top ASCII art transparent */
+.animated-ascii-container > * {
+  background-color: transparent !important;
+}
+
+/* Ensure animation doesn't affect size */
+.animated-ascii-container div, .animated-ascii-container span {
+  font-size: inherit !important;
+  line-height: inherit !important;
+}
+
+/* Replace any remaining red colors */
+.control-section h4 {
+  background-color: #0000aa !important; /* Blue headers for control sections */
+}
+
+/* Make sure modal backgrounds don't show */
+.modal, .modal-dialog, .modal-content, .modal-header, .modal-body, .modal-footer {
+  background-color: transparent !important;
+}
+
+/* Final overrides to ensure proper ASCII art display */
+pre, .ascii-art, .animated-ascii-container, [class*="ascii"] {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  max-width: none !important;
+  width: auto !important;
+  overflow: hidden !important; /* Changed from visible to hidden */
+}
+
+.animated-ascii-container div, .animated-ascii-container span {
+  background: transparent !important;
+  font-size: 10px !important;
+}
+
+/* Additional styles for the bottom ASCII art sections to prevent overlap */
+.container-fluid > div > pre {
+  max-height: 15vh !important;
+  overflow: hidden !important;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+}
+
+/* Specific fixes for the overlapping ASCII art sections */
+.container-fluid > div:nth-of-type(n+3) > pre {
+  font-size: 4px !important;
+  line-height: 4px !important;
+  height: auto !important;
+  max-height: 8vh !important;
+}
+
+/* Space between ASCII art sections */
+.container-fluid > div {
+  margin-bottom: 20px !important;
+}
+
+/* Override parent element that might be affecting the ASCII art size */
+.App pre, .col-12 pre, .text-center pre {
+  font-size: 10px !important;
+  transform: scale(1) !important;
+  margin: 20px auto !important;
+}
+
+/* Media queries for responsive ASCII art size */
+@media screen and (min-width: 1200px) {
+  .animated-ascii-container, .ascii-art, pre,
+  .animated-ascii-container div, .animated-ascii-container span {
+    font-size: 12px !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .animated-ascii-container, .ascii-art, pre,
+  .animated-ascii-container div, .animated-ascii-container span {
+    font-size: 8px !important;
+  }
+}

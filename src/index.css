@@ -1,0 +1,73 @@
+body {
+  margin: 0;
+  font-family: 'Px437_IBM_EGA8', 'VT323', 'DOS', monospace;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: none;
+  background-color: transparent; /* Make body background transparent */
+  color: #ffffff;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+code {
+  font-family: 'Px437_IBM_EGA8', 'VT323', 'DOS', monospace;
+  background-color: #000000;
+  color: #00aa00;
+  padding: 0.25rem;
+}
+
+/* Set appropriate line-height for ASCII art */
+pre {
+  line-height: 1;
+}
+
+/* Responsive styles */
+.container-fluid {
+  width: 100% !important;
+  padding-right: 15px !important;
+  padding-left: 15px !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  box-sizing: border-box !important;
+}
+
+/* ASCII art container responsiveness */
+.ascii-art-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Media queries for different screen sizes */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.5rem !important;
+  }
+  
+  .ascii-art-container {
+    transform: scale(0.8);
+    transform-origin: center top;
+  }
+}
+
+@media (max-width: 576px) {
+  h1 {
+    font-size: 1.2rem !important;
+  }
+  
+  .ascii-art-container {
+    transform: scale(0.6);
+  }
+}
+
+@media (max-width: 360px) {
+  h1 {
+    font-size: 1rem !important;
+  }
+  
+  .ascii-art-container {
+    transform: scale(0.5);
+  }
+}
