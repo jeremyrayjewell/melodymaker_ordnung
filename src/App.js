@@ -6,14 +6,14 @@ import AnimatedAsciiArt from "./AnimatedAsciiArt";
 import "./styles.css";
 import { 
   footerAsciiArt1, footerAsciiArt2, footerAsciiArt3,
-  footerAsciiArt1b 
+  footerAsciiArt1b, footerAsciiArt1c 
 } from './asciiFooter';
 
-function App() {
-  const [audioCtx, setAudioCtx] = useState(null);
+function App() {  const [audioCtx, setAudioCtx] = useState(null);
   const [analyser, setAnalyser] = useState(null);
   const [theme, setTheme] = useState("default");
   const [isMobile, setIsMobile] = useState(window.innerWidth < 666);
+  const [isSmallMobile, setIsSmallMobile] = useState(window.innerWidth < 415);
 
   useEffect(() => {
     const ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -23,11 +23,10 @@ function App() {
     setAnalyser(analyserNode);
     
     // Apply the DOS theme to body
-    document.body.setAttribute("data-bs-theme", "dos");
-
-    // Add resize listener for responsive ASCII art
+    document.body.setAttribute("data-bs-theme", "dos");    // Add resize listener for responsive ASCII art
     const handleResize = () => {
       setIsMobile(window.innerWidth < 666);
+      setIsSmallMobile(window.innerWidth < 415);
     };
 
     window.addEventListener('resize', handleResize);
@@ -84,10 +83,9 @@ function App() {
         {audioCtx && analyser && (
           <TransparentWaveOverlay audioCtx={audioCtx} analyser={analyser} />
         )}      
-      </div>      {/* ASCII art displays */}      
-      <div className="ascii-art-container">
+      </div>      {/* ASCII art displays */}        <div className="ascii-art-container">
         <pre className="ascii-art">
-          {(isMobile ? footerAsciiArt1b : footerAsciiArt1).map((line, index) => (
+          {(isSmallMobile ? footerAsciiArt1b : (isMobile ? footerAsciiArt1c : footerAsciiArt1)).map((line, index) => (
             <span key={index}>{line}</span>
           ))}
         </pre>
