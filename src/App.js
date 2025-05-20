@@ -3,7 +3,6 @@ import MusicalBigO from "./MusicalBigO";
 import WaveformVisualizer from "./WaveformVisualizer";
 import TransparentWaveOverlay from "./TransparentWaveOverlay";
 import AnimatedAsciiArt from "./AnimatedAsciiArt";
-import "./styles.css";
 import { 
   footerAsciiArt1, footerAsciiArt2, footerAsciiArt3,
   footerAsciiArt1b, footerAsciiArt1c 
