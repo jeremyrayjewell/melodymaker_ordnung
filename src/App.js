@@ -3,9 +3,7 @@ import MusicalBigO from "./MusicalBigO";
 import WaveformVisualizer from "./WaveformVisualizer";
 import TransparentWaveOverlay from "./TransparentWaveOverlay";
 import AnimatedAsciiArt from "./AnimatedAsciiArt";
-import "./bootstrap386.css"; // Import our custom Bootstrap.386 CSS overrides
-import "./responsiveStyles.css"; // Import responsive styles
-import "./asciiArt.css"; // Import ASCII art specific fixes
+import "./styles.css"; // Import our custom Bootstrap.386 CSS overrides
 
 function App() {
   const [audioCtx, setAudioCtx] = useState(null);
