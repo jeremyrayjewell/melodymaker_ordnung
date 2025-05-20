@@ -11,7 +11,6 @@ import {
 
 function App() {  const [audioCtx, setAudioCtx] = useState(null);
   const [analyser, setAnalyser] = useState(null);
-  const [theme, setTheme] = useState("default");
   const [isMobile, setIsMobile] = useState(window.innerWidth < 666);
   const [isSmallMobile, setIsSmallMobile] = useState(window.innerWidth < 415);
 
@@ -33,19 +32,12 @@ function App() {  const [audioCtx, setAudioCtx] = useState(null);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Function to toggle between themes
-  const toggleTheme = () => {
-    const newTheme = theme === "default" ? "green" : theme === "green" ? "amber" : "default";
-    setTheme(newTheme);
-    document.body.setAttribute("data-bs-theme", newTheme === "default" ? "dos" : newTheme);
-  };
   
   return (
     <div className="container-fluid dosbox" style={{ backgroundColor: 'transparent', border: 'none', boxShadow: 'none', padding: 0, margin: 0 }}>
       {/* Everything must be wrapped inside this outermost div with transparent background */}
       <div className="row mb-3" style={{ margin: 0 }}>
-        <div className="col-12 text-center">          {/* ASCII Art with React-based wave animation */}
-          <div className="ascii-art-container">
+        <div className="col-12 text-center">          {/* ASCII Art with React-based wave animation */}          <div className="ascii-art-container">
             <pre style={{ fontSize: "clamp(6px, 1vw, 10px)", color: "white", padding: "0" }}>
               <AnimatedAsciiArt 
                 asciiLines={[
@@ -67,7 +59,6 @@ function App() {  const [audioCtx, setAudioCtx] = useState(null);
           </div>
 
           <h1>Musical Big-O <span className="blink">_</span></h1>
-          <button className="btn" onClick={toggleTheme}>Change Theme</button>
         </div>
       </div>
         {/* Main App content */}

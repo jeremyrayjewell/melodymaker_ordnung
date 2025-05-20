@@ -100,11 +100,7 @@ export default function MusicalBigO({ audioCtx, analyser }) {
 
   
   const audioCanvasRef = useRef(null);
-  const algorithmCanvasRef = useRef(null);
-  const drumCanvasRef = useRef(null);
-
-  
-  const [showLogs, setShowLogs] = useState(false);
+  const algorithmCanvasRef = useRef(null);  const drumCanvasRef = useRef(null);
   
   const [showDrumGain, setShowDrumGain] = useState(false);
   
@@ -2476,8 +2472,7 @@ const startAckermann = () => {
                 />
               </div>
 
-              {}
-              <div className="dos-canvas-container">
+              {}              <div className="dos-canvas-container">
                 <h4>Drum Pattern</h4>
                 <canvas
                   ref={drumCanvasRef}
@@ -2489,16 +2484,6 @@ const startAckermann = () => {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      
-      <div className="row mt-3">
-        <div className="col-12 text-center">
-          <button 
-            className="btn dos-btn"
-            onClick={() => setShowLogs(!showLogs)}          >
-            {showLogs ? "Hide Logs" : "Show Logs"}
-          </button>
         </div>
       </div>
     </div>
