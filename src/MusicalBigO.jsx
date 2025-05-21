@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { SCALES } from "./scales.js";
 import { createPatternFromNotes } from "./patternHelpers.js";
+import "./collapsible.css";
 import {
   getAccessElementData,
   getCheckEvenOddData,
@@ -1429,13 +1430,13 @@ const startAckermann = () => {
             
             {}            <div className="row mt-3">
               <div className="col-12">
-                <div className="dos-subtitle-container">
-                  <h4 
-                    className="dos-subtitle" 
-                    onClick={() => setShowEnvelopeSection(!showEnvelopeSection)}
-                  >
+                <div className="dos-subtitle-container">                  <h4 className="dos-subtitle">
                     ADSR Envelope
-                    <span className="collapse-indicator">
+                    <span 
+                      className="collapse-indicator" 
+                      onClick={() => setShowEnvelopeSection(!showEnvelopeSection)}
+                      title={showEnvelopeSection ? "Collapse section" : "Expand section"}
+                    >
                       {showEnvelopeSection ? '[-]' : '[+]'}
                     </span>
                   </h4>
@@ -1502,13 +1503,13 @@ const startAckermann = () => {
             
             {}            <div className="row mt-3">
               <div className="col-12">
-                <div className="dos-subtitle-container">
-                  <h4 
-                    className="dos-subtitle" 
-                    onClick={() => setShowModulationSection(!showModulationSection)}
-                  >
+                <div className="dos-subtitle-container">                  <h4 className="dos-subtitle">
                     Amplitude Modulation
-                    <span className="collapse-indicator">
+                    <span 
+                      className="collapse-indicator"
+                      onClick={() => setShowModulationSection(!showModulationSection)}
+                      title={showModulationSection ? "Collapse section" : "Expand section"}
+                    >
                       {showModulationSection ? '[-]' : '[+]'}
                     </span>
                     {modulatorOn && <span className="status-indicator">[ON]</span>}
@@ -1583,13 +1584,13 @@ const startAckermann = () => {
             
             {}            <div className="row mt-3">
               <div className="col-12">
-                <div className="dos-subtitle-container">
-                  <h4 
-                    className="dos-subtitle" 
-                    onClick={() => setShowFilterSection(!showFilterSection)}
-                  >
+                <div className="dos-subtitle-container">                  <h4 className="dos-subtitle">
                     Filter
-                    <span className="collapse-indicator">
+                    <span 
+                      className="collapse-indicator" 
+                      onClick={() => setShowFilterSection(!showFilterSection)}
+                      title={showFilterSection ? "Collapse section" : "Expand section"}
+                    >
                       {showFilterSection ? '[-]' : '[+]'}
                     </span>
                     {filterOn && <span className="status-indicator">[ON]</span>}
@@ -1671,13 +1672,13 @@ const startAckermann = () => {
             
             {}            <div className="row mt-3">
               <div className="col-12">
-                <div className="dos-subtitle-container">
-                  <h4 
-                    className="dos-subtitle" 
-                    onClick={() => setShowVibratoSection(!showVibratoSection)}
-                  >
+                <div className="dos-subtitle-container">                  <h4 className="dos-subtitle">
                     Vibrato
-                    <span className="collapse-indicator">
+                    <span 
+                      className="collapse-indicator" 
+                      onClick={() => setShowVibratoSection(!showVibratoSection)}
+                      title={showVibratoSection ? "Collapse section" : "Expand section"}
+                    >
                       {showVibratoSection ? '[-]' : '[+]'}
                     </span>
                     {vibratoOn && <span className="status-indicator">[ON]</span>}

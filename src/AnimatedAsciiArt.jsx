@@ -1,10 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 
+// Create the component
 const AnimatedAsciiArt = ({ asciiLines }) => {
   
   const [charOffsets, setCharOffsets] = useState(
     // Initialize with empty arrays for each line
     Array.from({ length: asciiLines.length }, () => [])
+  );
+  
+  // Pre-calculate line length once for better performance
+  const lineLengths = useMemo(() => 
+    asciiLines.map(line => line.length),
+    [asciiLines]
   );
   
   useEffect(() => {
@@ -15,19 +22,20 @@ const AnimatedAsciiArt = ({ asciiLines }) => {
     let animationFrameId;
     let startTime = Date.now();
     
-    // Animation function
+    // Optimized animation function with less GC pressure
     const animate = () => {
-      const currentTime = Date.now();
-      const elapsed = currentTime - startTime;
+      const elapsed = Date.now() - startTime;
       
-      // Calculate new vertical offsets for each character
-      const newOffsets = asciiLines.map((line) => {
-        return Array.from({ length: line.length }, (_, charIndex) => {
-          // Calculate sin wave offset based on position and time
-          const phase = (charIndex / wavelength) - (elapsed * speed);
-          return Math.sin(phase * 2 * Math.PI) * amplitude;
-        });
-      });
+      // Calculate new vertical offsets for each character with reduced object creation
+      const newOffsets = [];
+      for (let i = 0; i < asciiLines.length; i++) {
+        const lineOffsets = new Array(lineLengths[i]);
+        for (let j = 0; j < lineLengths[i]; j++) {
+          const phase = (j / wavelength) - (elapsed * speed);
+          lineOffsets[j] = Math.sin(phase * 2 * Math.PI) * amplitude;
+        }
+        newOffsets.push(lineOffsets);
+      }
       
       setCharOffsets(newOffsets);
       animationFrameId = requestAnimationFrame(animate);
@@ -40,8 +48,7 @@ const AnimatedAsciiArt = ({ asciiLines }) => {
   }, [asciiLines]);    return (
     <div className="animated-ascii-container" style={{ 
       fontFamily: "'Px437_IBM_EGA8', 'DOS', monospace",
-      background: "transparent",  // Transparent background
-      color: "#aaaaaa",
+      background: "transparent",  // Transparent background      color: "#cccccc", // Brighter text color
       padding: "0",
       whiteSpace: "pre",
       overflow: "visible",
@@ -50,7 +57,9 @@ const AnimatedAsciiArt = ({ asciiLines }) => {
       textAlign: "center",
       width: "100%",
       margin: "0 auto",
-      transform: "none" // Prevent transforms from affecting the container
+      transform: "none", // Prevent transforms from affecting the container
+      textShadow: "0 0 8px rgba(180, 210, 255, 0.7)", // Add text glow
+      filter: "brightness(110%)" // Slightly increase brightness
     }}>      {asciiLines.map((line, lineIndex) => (
         <div key={lineIndex} className="ascii-line" style={{ 
           marginBottom: "0", 
@@ -63,15 +72,15 @@ const AnimatedAsciiArt = ({ asciiLines }) => {
             const offset = char.trim() === '' ? 0 : (charOffsets[lineIndex][charIndex] || 0);
               return (              <span
                 key={charIndex}
-                style={{
-                  display: 'inline-block',
+                style={{                  display: 'inline-block',
                   transform: `translateY(${offset}px)`,
                   background: "transparent", // Ensure each character has transparent background
                   fontSize: "10px", // Fixed exact size
                   lineHeight: "1",
                   fontFamily: "inherit",
                   width: "auto",
-                  height: "auto"
+                  height: "auto",
+                  textShadow: char.trim() !== '' ? "0 0 5px rgba(170, 200, 255, 0.6)" : "none" // Individual character glow
                 }}
               >
                 {char}
@@ -80,8 +89,8 @@ const AnimatedAsciiArt = ({ asciiLines }) => {
           })}
         </div>
       ))}
-    </div>
-  );
+    </div>  );
 };
 
-export default AnimatedAsciiArt;
+// Export as memoized component to prevent unnecessary re-renders
+export default React.memo(AnimatedAsciiArt);
